@@ -1,0 +1,26 @@
+﻿<Page
+    x:Class="Watch_Show_TV.Pages.Sections.ShowInfo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Watch_Show_TV.Pages.Sections"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel>
+            <Button x:Name="btnWatched" Click="btnWatched_Click" Content="Añadir serie"/>
+            <StackPanel Orientation="Horizontal">
+                <Image x:Name="Poster" Width="200"/>
+                <StackPanel>
+                    <TextBlock x:Name="Title" Text="Title" FontSize="16" FontWeight="Bold" Margin="20,0,0,0"/>
+                    <ScrollViewer HorizontalScrollMode="Enabled">
+                        <TextBlock x:Name="Summary" Text="Summary" Margin="20,0,0,0" Width="400"/>
+                    </ScrollViewer>
+                    <TextBlock x:Name="NextEpisodeDate" Text="Date" Margin="20,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

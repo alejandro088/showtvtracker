@@ -7,6 +7,7 @@ using TMDbLib.Client;
 using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.Search;
 using TMDbLib.Objects.TvShows;
+using Watch_Show_TV.Class;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -26,13 +27,10 @@ namespace Watch_Show_TV.Pages
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public static TMDbClient client;
 
         public MainPage()
         {
             this.InitializeComponent();
-
-             client = new TMDbClient("7d637f29355aba225bd62d7af21d38d5");
 
         }
 

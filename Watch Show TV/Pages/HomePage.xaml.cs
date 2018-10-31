@@ -1,10 +1,16 @@
-﻿using System;
+﻿using Microsoft.Data.Sqlite;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
+using System.Threading.Tasks;
+using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
 using TMDbLib.Objects.TvShows;
+using Watch_Show_TV.Class;
+using Watch_Show_TV.Pages.Sections;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -25,29 +31,53 @@ namespace Watch_Show_TV.Pages
     /// </summary>
     public sealed partial class HomePage : Page
     {
+
+        List<ShowTv> lResult;
         public HomePage()
         {
             this.InitializeComponent();
 
-            TvShow show = MainPage.client.GetLatestTvShowAsync().Result;
+            SearchContainer<SearchTv> topResults = TMDB.client.GetTvShowTopRatedAsync().Result;
+            List<ShowTv> topResult = new List<ShowTv>();
+            foreach (SearchTv result in topResults.Results)
+            {
+                topResult.Add(new ShowTv(result.Id));
+            }
 
-            TvShow.Text = show.Name;
+            TVPopular.ItemsSource = topResult;          
 
-            Uri uri = new Uri("https://image.tmdb.org/t/p/original" + show.PosterPath);
+        }
 
-            BitmapImage image = new BitmapImage(uri);
+        private void txtSearch_KeyUp(object sender, RoutedEventArgs e)
+        {
+            if (txtSearch.Text == "")
+                btnSearch.IsEnabled = false;
+            else
+                btnSearch.IsEnabled = true;
+        }
 
-            Image imageShow = new Image();
-            imageShow.Source = image;
-            imageShow.Height = 400;
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            SearchContainer<SearchTv> results = TMDB.client.SearchTvShowAsync(txtSearch.Text).Result;
 
-            sPanel1.Children.Add(imageShow);
-            
+            lResult = new List<ShowTv>();
+            foreach (SearchTv result in results.Results) { 
+                
+                lResult.Add(new ShowTv(result.Id));
+            }
 
-            TextBlock txtUri = new TextBlock();
-            txtUri.Text = show.PosterPath;
+            Output.ItemsSource = lResult;
 
-            sPanel1.Children.Add(txtUri);
+           
+
+        }
+
+       private void list_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(sender.Equals(TVPopular))
+                this.Frame.Navigate(typeof(ShowInfo), (ShowTv)TVPopular.SelectedItem);
+            else if (sender.Equals(Output))
+                this.Frame.Navigate(typeof(ShowInfo), (ShowTv)Output.SelectedItem);
         }
     }
 }

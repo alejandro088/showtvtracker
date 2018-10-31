@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Watch_Show_TV.Pages;
+using Watch_Show_TV.Class;
+using TMDbLib.Client;
 
 namespace Watch_Show_TV
 {
@@ -32,6 +34,9 @@ namespace Watch_Show_TV
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
+            TMDB.client = new TMDbClient("7d637f29355aba225bd62d7af21d38d5");
+
+            DB.InitializeDatabase();
         }
 
         

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Watch_Show_TV.Class;
+using Watch_Show_TV.Pages.Sections;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -25,6 +27,26 @@ namespace Watch_Show_TV.Pages
         public Favs()
         {
             this.InitializeComponent();
+
+            this.loadListShowFavs();
+        }
+
+        public void loadListShowFavs()
+        {
+            List<int> results = DB.GetShowFavorites();
+            List<ShowTv> lResult = new List<ShowTv>();
+            foreach (int result in results)
+            {
+                lResult.Add(new ShowTv(result));
+            }
+
+            Output.ItemsSource = lResult;
+        }
+
+        private void Output_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ShowInfo), (ShowTv)Output.SelectedItem);
+
         }
     }
 }

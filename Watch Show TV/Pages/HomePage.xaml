@@ -10,7 +10,42 @@
 
     <Grid x:Name="grid">
         <StackPanel x:Name="sPanel1">
-            <TextBlock x:Name="TvShow" Text="Home" Margin="20,0,0,0"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="txtSearch" KeyUp="txtSearch_KeyUp" Margin="20,0,0,0" PlaceholderText="Ingrese una serie" MinWidth="200"/>
+                <Button x:Name="btnSearch" Click="btnSearch_Click" Content="Buscar!" Margin="20,0,0,0"/>
+            </StackPanel>
+
+            <ListView Name="Output" SelectionChanged="list_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding PosterImage}" Width="100"/>
+                            <StackPanel Padding="20,20,0,20">
+                                <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding AirsDate}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                    
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackPanel x:Name="sPanel2">
+                <GridView  Name="TVPopular" SelectionChanged="list_SelectionChanged">
+                    <GridView.ItemTemplate>                            
+                        <DataTemplate>                            
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold"/>
+                                    <Image Source="{Binding PosterImage}" Width="100"/>
+                                </StackPanel>                            
+                        </DataTemplate>                        
+                    </GridView.ItemTemplate>
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid MaximumRowsOrColumns="4"/>
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                </GridView>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

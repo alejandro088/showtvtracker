@@ -9,7 +9,22 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="Favoritos" Margin="20,0,0,0" />
+        <StackPanel>
+            <TextBlock Text="Favoritos" Margin="20,0,0,0" FontSize="16" FontWeight="Bold" />
+            <ListView Name="Output" SelectionChanged="Output_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding PosterImage}" Width="100"/>
+                            <StackPanel Padding="20,20,0,20">
+                                <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding AirsDate}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
 
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
     </Grid>
 </Page>
