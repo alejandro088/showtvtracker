@@ -58,6 +58,8 @@ namespace Watch_Show_TV.Pages
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
+            Progress.IsActive = true;
+
             SearchContainer<SearchTv> results = TMDB.client.SearchTvShowAsync(txtSearch.Text).Result;
 
             lResult = new List<ShowTv>();
@@ -68,13 +70,13 @@ namespace Watch_Show_TV.Pages
 
             Output.ItemsSource = lResult;
 
-           
+            Progress.IsActive = false;
 
         }
 
-       private void list_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void list_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(sender.Equals(TVPopular))
+            if (sender.Equals(TVPopular))
                 this.Frame.Navigate(typeof(ShowInfo), (ShowTv)TVPopular.SelectedItem);
             else if (sender.Equals(Output))
                 this.Frame.Navigate(typeof(ShowInfo), (ShowTv)Output.SelectedItem);

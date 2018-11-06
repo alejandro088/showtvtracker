@@ -15,8 +15,8 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding PosterImage}" Width="100"/>
-                            <StackPanel Padding="20,20,0,20">
+                            <Image Source="{Binding PosterImage}" Margin="20" Width="100"/>
+                            <StackPanel Padding="20">
                                 <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding AirsDate}"/>
                             </StackPanel>

@@ -14,7 +14,7 @@
                 <TextBox x:Name="txtSearch" KeyUp="txtSearch_KeyUp" Margin="20,0,0,0" PlaceholderText="Ingrese una serie" MinWidth="200"/>
                 <Button x:Name="btnSearch" Click="btnSearch_Click" Content="Buscar!" Margin="20,0,0,0"/>
             </StackPanel>
-
+            <ProgressRing x:Name="Progress" IsActive="False" Width="200"/>
             <ListView Name="Output" SelectionChanged="list_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>

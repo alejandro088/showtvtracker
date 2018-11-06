@@ -9,8 +9,9 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <StackPanel>
-            <Button x:Name="btnWatched" Click="btnWatched_Click" Content="Añadir serie"/>
+        <StackPanel Margin="20">
+            <Button x:Name="btnWatched" Click="btnWatched_Click" Content="Añadir serie" HorizontalAlignment="Right"/>
+           
             <StackPanel Orientation="Horizontal">
                 <Image x:Name="Poster" Width="200"/>
                 <StackPanel>
@@ -18,9 +19,39 @@
                     <ScrollViewer HorizontalScrollMode="Enabled">
                         <TextBlock x:Name="Summary" Text="Summary" Margin="20,0,0,0" Width="400"/>
                     </ScrollViewer>
+                    <RatingControl x:Name="Rating" 
+                                   Loaded="Rating_Loaded" 
+                                   ValueChanged="RatingChanged" 
+                                   IsReadOnly="True"/>                    
                     <TextBlock x:Name="NextEpisodeDate" Text="Date" Margin="20,0,0,0"/>
                 </StackPanel>
             </StackPanel>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" HorizontalScrollMode="Enabled">
+                <StackPanel x:Name="castPanel"
+                        Width="600" 
+                        Margin="20">
+                    <TextBlock Text="Cast" Margin="20,0,0,0" FontSize="16" FontWeight="Bold" />
+                    <GridView Name="Cast" Loaded="Cast_Loaded">
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Image Source="{Binding Photo}" Margin="20" Width="100"/>
+                                    <StackPanel Padding="20">
+                                        <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold"/>                                        
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+
+                        </GridView.ItemTemplate>
+                    </GridView>
+
+                </StackPanel>
+            </ScrollViewer>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" HorizontalScrollMode="Enabled">
+                <StackPanel x:Name="episodesPanel" Width="600" Margin="20">
+                
+                </StackPanel>
+            </ScrollViewer>
         </StackPanel>
     </Grid>
 </Page>

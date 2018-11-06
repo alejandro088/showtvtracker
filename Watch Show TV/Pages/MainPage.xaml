@@ -22,7 +22,7 @@
             <muxc:NavigationViewItem  Icon="Calendar" Content="Calendario" Tag="Calendar" />
             <muxc:NavigationViewItem  Icon="Page" Content="Novedades" Tag="News" />
         </muxc:NavigationView.MenuItems>
-        <ScrollViewer>
+        <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Auto" >
             <Frame x:Name="contentFrame"/>
         </ScrollViewer>
     </muxc:NavigationView>
